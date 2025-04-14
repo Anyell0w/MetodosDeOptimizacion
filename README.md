@@ -6,5 +6,5 @@
 ### Contenido del curso dividido en secciones:
 
 ### 1. Definiciones
-[Tarea de definiciones](/definiciones/main.pdf)
+[Tarea de definiciones](/Definiciones/main.pdf)
 
