@@ -1,90 +1,159 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+\documentclass[12pt]{article}
 \usepackage[spanish]{babel}
-\usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
 
-\title{Sistema de Ecuaciones Lineales}
-\author[1]{Angello Marcelo Zamora Valencia}
-\author[2]{Mario Wilfredo Ramirez Puma}
-\author[3]{Edsel Yuliza Peralta Lopez}
-\author[4]{Nestor Ademir Ruelas Yana}
-\affil[1]{Universidad Nacional del Altiplano Puno}
-\affil[2]{Facultad de Ingeniería Estadística e Informática}
-\date{\today}
+\geometry{a4paper, margin=2.5cm}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	frame=single,
+	frameround=tttt
+}
+
+\lstset{style=mystyle}
+
+% Formato de secciones
+\titleformat{\section}{\large\bfseries\color{blue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{teal}}{\thesubsection}{1em}{}
+
+% Encabezado y pie de página
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Práctica 03 - Sistemas de Gestión de Bases de Datos}
+\lhead{Angello Marcelo Zamora Valencia}
+\rfoot{\thepage}
 
 \begin{document}
 	
-	\maketitle
+	\begin{titlepage}
+		\centering
+		\vspace*{1cm}
+		
+		\includegraphics[width=0.4\textwidth]{logo_unap.png}\par
+		\vspace{1cm}
+		
+		{\scshape\LARGE Universidad Nacional del Altiplano \par}
+		\vspace{0.5cm}
+		
+		{\scshape\Large Escuela Profesional de Ingeniería Estadística e Informática\par}
+		\vspace{1.5cm}
+		
+		{\huge\bfseries Práctica 03: Consultas SQL\par}
+		\vspace{2cm}
+		
+		{\Large\itshape Angello Marcelo Zamora Valencia\par}
+		\vfill
+		\vspace{0.5cm}
+		
+		{\large Vto ciclo\par}
+		{\large Sistemas de Gestión de Bases de Datos\par}
+		{\large \today\par}
+	\end{titlepage}
 	
 	\section{Introducción}
-	Los sistemas de ecuaciones lineales son fundamentales en álgebra lineal y tienen aplicaciones en diversas áreas como ingeniería, física, economía y más. Un sistema de ecuaciones lineales puede representarse matricialmente como $A\mathbf{x} = \mathbf{b}$, donde $A$ es la matriz de coeficientes, $\mathbf{x}$ es el vector de incógnitas y $\mathbf{b}$ es el vector de términos independientes.
+	En el presente documento se detallan las consultas SQL realizadas como parte de la Práctica 03 del curso de Sistemas de Gestión de Bases de Datos. Se trabajó con dos bases de datos principales: \texttt{bd\_restaurant} y \texttt{bdmuniate\_multas}, realizando diversas consultas que permiten extraer información valiosa para la gestión de estos sistemas.
 	
-	\section{Explicación del Programa}
-	El programa implementado en Python utiliza la biblioteca NumPy para resolver sistemas de ecuaciones lineales. A continuación se detalla su funcionamiento:
+	\section{Consultas en BD\_Restaurant}
 	
-	\subsection{Entrada de Datos}
-	\begin{itemize}
-		\item El usuario ingresa el número de incógnitas ($n$).
-		\item Se solicitan los coeficientes de cada ecuación, que se almacenan en la matriz $A$.
-		\item Se ingresan los términos independientes, que se almacenan en el vector $\mathbf{b}$.
-	\end{itemize}
+	\subsection{Especialidades del restaurante}
+	Consulta para obtener las especialidades de los empleados:
+	\begin{lstlisting}[language=SQL]
+		SELECT especialidad FROM empleados;
+	\end{lstlisting}
 	
-	\subsection{Procesamiento}
-	\begin{itemize}
-		\item Los datos se convierten en arrays de NumPy para su manipulación matricial.
-		\item Se utiliza la función \texttt{np.linalg.solve()} para resolver el sistema.
-	\end{itemize}
+	\subsection{Tipo de bebida y comida que expende el restaurante}
+	Consulta para conocer los tipos de productos vendidos:
+	\begin{lstlisting}[language=SQL]
+		SELECT tipo FROM ventas;
+	\end{lstlisting}
 	
-	\subsection{Salida de Resultados}
-	\begin{itemize}
-		\item Si el sistema tiene solución única, se muestran los valores de las incógnitas.
-		\item Si el sistema no tiene solución única (matriz singular o incompatible), se muestra un mensaje de error.
-	\end{itemize}
+	\subsection{Ingreso total según tipo de venta}
+	Consulta para calcular los ingresos totales:
+	\begin{lstlisting}[language=SQL]
+		SELECT SUM(costo) AS total_costos
+		FROM ventas;
+	\end{lstlisting}
 	
-	\section{Teoría Matemática}
-	Un sistema de ecuaciones lineales puede tener:
-	\begin{itemize}
-		\item \textbf{Solución única}: Cuando la matriz $A$ es invertible (determinante no nulo).
-		\item \textbf{Infinitas soluciones}: Cuando el sistema es compatible indeterminado.
-		\item \textbf{Ninguna solución}: Cuando el sistema es incompatible.
-	\end{itemize}
+	\subsection{Empleado que recibió más propinas}
+	Consulta para identificar al empleado con mayores propinas:
+	\begin{lstlisting}[language=SQL]
+		SELECT 
+		id_empleado,
+		SUM(propina) AS total_propina
+		FROM 
+		registro_caja
+		GROUP BY 
+		id_empleado
+		ORDER BY 
+		total_propina DESC
+		LIMIT 1;
+	\end{lstlisting}
 	
-	El método implementado utiliza descomposición LU internamente, que es numéricamente estable para la mayoría de matrices.
+	\section{Consultas en BD\_MuniaMultas}
 	
-	\section{Casos de Uso}
-	Este programa puede utilizarse para:
-	\begin{itemize}
-		\item Resolver problemas de circuitos eléctricos (leyes de Kirchhoff).
-		\item Balancear ecuaciones químicas.
-		\item Modelar problemas económicos (oferta y demanda).
-		\item Resolver sistemas mecánicos (equilibrio de fuerzas).
-	\end{itemize}
+	\subsection{Ordenamiento alfabético de registros}
+	Consultas para ordenar los datos de multas:
 	
-	\section{Ejemplo de Ejecución}
-	Para el sistema:
-	\[
-	\begin{cases}
-		2x + y = 5 \\
-		x - y = 1
-	\end{cases}
-	\]
-	El usuario ingresaría:
-	\begin{verbatim}
-		Número de incógnitas: 2
-		Coeficientes ecuación 1: 2 1
-		Coeficientes ecuación 2: 1 -1
-		Términos independientes: 5 1
-	\end{verbatim}
-	La solución sería $x = 2$, $y = 1$.
+	\begin{lstlisting}[language=SQL]
+		-- Por departamento y provincia
+		SELECT DISTINCT departamento, provincia
+		FROM bdmuniate_multas
+		ORDER BY departamento ASC, provincia ASC;
+		
+		-- Por zona
+		SELECT DISTINCT zona
+		FROM bdmuniate_multas
+		ORDER BY zona ASC;
+		
+		-- Por tipo de establecimiento (giro)
+		SELECT DISTINCT giro AS tipo_establecimiento
+		FROM bdmuniate_multas
+		ORDER BY giro ASC;
+		
+		-- Consulta combinada
+		SELECT departamento, provincia, zona, giro AS tipo_establecimiento
+		FROM bdmuniate_multas
+		ORDER BY departamento ASC, provincia ASC, zona ASC, giro ASC;
+	\end{lstlisting}
 	
-	\section{Bibliografía}
-	\begin{enumerate}
-		\item Strang, G. (2016). \textit{Introduction to Linear Algebra}. Wellesley-Cambridge Press.
-		\item Burden, R. L., \& Faires, J. D. (2010). \textit{Numerical Analysis} (9th ed.). Cengage Learning.
-		\item NumPy Documentation. \textit{numpy.linalg.solve}. \url{https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve.html}
-		\item Anton, H., \& Rorres, C. (2010). \textit{Elementary Linear Algebra: Applications Version} (10th ed.). Wiley.
-	\end{enumerate}
+	\subsection{Monto total recaudado por departamento}
+	Consulta para calcular el monto total de multas por departamento:
+	\begin{lstlisting}[language=SQL]
+		SELECT 
+		departamento,
+		SUM(total) AS monto_total_recaudado
+		FROM 
+		bdmuniate_multas
+		GROUP BY 
+		departamento
+		ORDER BY 
+		monto_total_recaudado DESC;
+	\end{lstlisting}
 	
 \end{document}
