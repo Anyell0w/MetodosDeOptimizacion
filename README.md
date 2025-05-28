@@ -12,7 +12,7 @@
 [Tarea de Sistema de Ecuaciones](/SistemasEcuaciones/document.pdf)
 
 ### 3. Uso e implementación de Flask
-[Tarea de implementación de algún Framework de Python](/ImplemetacionFlask/FlaskImplementacion.pdf)
+[Tarea de implementación de algún Framework de Python](/ImplementacionFlask/FlaskImplementacion.pdf)
 
 ### 4. Paper sobre modelo de optimización
 [Tarea de elaborar un paper sobre algun modelo de optimización en negocio](./Paper/metop.pdf)
