@@ -32,7 +32,7 @@
 ## SEGUNDA UNIDAD
 
 ### 1. LAGRANGE
-[Multiplicadores de Lagrange explicados](./11Lagrange/lagrange.pdf)
+[Multiplicadores de Lagrange explicados](./11LAGRANGE/lagrange.pdf)
 ### 2. Artículo Científico
 [Articulo de Opmitización MultiObjetivo](./12ARTÍCULO/articulo.pdf)
 ### 3. Caramelos
