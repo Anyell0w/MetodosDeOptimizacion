@@ -29,5 +29,21 @@
 ### 8. OPTUNA
 [Aplicar un modelo de Regresión y optimizar hiperparámetros con OPTUNA](./OPTUNA/Regresión_Egresados.pdf)
 
+## SEGUNDA UNIDAD
+
+### 1. LAGRANGE
+[Multiplicadores de Lagrange explicados](./11Lagrange/lagrange.pdf)
+### 2. Artículo Científico
+[Articulo de Opmitización MultiObjetivo](./12ARTÍCULO/articulo.pdf)
+### 3. Caramelos
+[Juego de los caramelos para optimizar](./13CARAMELOS/app.py)
+### 4. BattleArena
+[Juego Competitivo para Optimizar](./14BATTLEARENA/optima.pdf)
+### 5. Video Manim
+[Video Explicativo del Paper usando la librería Manim](./15VIDEO/video_completo.mp4)
+
+<center>========== FIN ==========</center>
+
+
 
 

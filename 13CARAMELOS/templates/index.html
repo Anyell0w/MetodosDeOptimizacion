@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juego de Caramelos</title>
+  <script src="https://cdn.tailwindcss.com "></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans p-6">
+
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h1 class="text-3xl font-bold mb-4 text-center">🍭 Juego de Caramelos y Chupetines</h1>
+
+
+   <form method="POST" class="mb-6">
+   <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Cantidad de jugadores</label>
+      <input type="number" name="jugadores" value="{{ form.jugadores|default(6) }}" min="1" max="20" class="w-full p-2 border rounded">
+   </div>
+
+   <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Tipos de caramelo (separados por coma)</label>
+      <input type="text" name="tipos_caramelo" value="{{ form.tipos_caramelo|default('fresa,huevo,pera') }}" class="w-full p-2 border rounded">
+   </div>
+
+   <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Caramelos por persona</label>
+      <input type="number" name="caramelos_por_persona" value="{{ form.caramelos_por_persona|default(2) }}" min="1" class="w-full p-2 border rounded">
+   </div>
+
+   <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Tiempo límite (segundos)</label>
+      <input type="number" name="tiempo_limite" value="{{ form.tiempo_limite|default(30) }}" min="0" class="w-full p-2 border rounded">
+   </div>
+
+   <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Máximo de intercambios</label>
+      <input type="number" name="max_intercambios" value="{{ form.max_intercambios|default(10) }}" min="0" class="w-full p-2 border rounded">
+   </div>
+
+   <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Iniciar Juego</button>
+   </form>
+
+   {% if resultado %}
+      {% if resultado.error %}
+         <p class="text-red-500">{{ resultado.error }}</p>
+      {% else %}
+         <h2 class="text-xl font-bold mt-6 mb-2">Caramelos Iniciales:</h2>
+         <ul class="list-disc pl-5 mb-4">
+            {% for bolsa in resultado.inventario_inicial %}
+            <li><strong>Jugador {{ loop.index }}:</strong> {{ bolsa|join(', ') }}</li>
+            {% endfor %}
+         </ul>
+
+         <p class="text-green-600 font-semibold mb-2">
+            🎯 Máximo de chupetines posible antes de intercambios: {{ resultado.max_posible_inicial }}
+         </p>
+
+         <p class="text-yellow-600 font-semibold mb-2">
+            💬 Intercambios realizados: {{ resultado.intercambios_realizados }}
+         </p>
+
+         <p class="text-green-700 font-semibold">
+            🍭 Máximo de chupetines posible después de intercambios: {{ resultado.max_posible_final }}
+         </p>
+      {% endif %}
+   {% endif %}
+
+
+
+  </div>
+
+  <footer class="text-center text-sm text-gray-500 mt-4">
+      Angello Zamora Valencia
+  </footer>
+
+</body>
+</html>
