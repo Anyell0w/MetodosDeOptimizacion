@@ -42,7 +42,7 @@
 ### 5. Video Manim
 [Video Explicativo del Paper usando la librería Manim](./15VIDEO/video_completo.mp4)
 
-<center>========== FIN ==========</center>
+![gifmario](./mario.gif)
 
 
 
